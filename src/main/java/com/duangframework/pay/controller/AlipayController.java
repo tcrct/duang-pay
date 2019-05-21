@@ -8,7 +8,7 @@ import com.duangframework.mvc.core.BaseController;
 import com.duangframework.pay.service.AlipayService;
 
 @Controller
-@Mapping(value = "/", desc = "支付宝管理", level = LevelEnums.DIR)
+@Mapping(desc = "支付宝管理", level = LevelEnums.DIR)
 public class AlipayController extends BaseController {
 
     @Import

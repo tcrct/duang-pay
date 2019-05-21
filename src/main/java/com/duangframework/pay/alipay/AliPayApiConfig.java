@@ -12,7 +12,7 @@ public class AliPayApiConfig implements Serializable {
 	private static final long serialVersionUID = -4736760736935998953L;
 
 	private String privateKey;
-	private String alipayPublicKey;
+	private String publicKey;
 	private String appId;
 	private String serviceUrl;
 	private String charset;
@@ -29,7 +29,7 @@ public class AliPayApiConfig implements Serializable {
 
 	public AliPayApiConfig build() {
 		this.alipayClient = new DefaultAlipayClient(getServiceUrl(), getAppId(), getPrivateKey(), getFormat(),
-				getCharset(), getAlipayPublicKey(), getSignType());
+				getCharset(), getPublicKey(), getSignType());
 		return this;
 	}
 
@@ -48,18 +48,18 @@ public class AliPayApiConfig implements Serializable {
 		return this;
 	}
 
-	public String getAlipayPublicKey() {
-		if (ToolsKit.isEmpty(alipayPublicKey)) {
-			throw new IllegalStateException("alipayPublicKey 未被赋值");
+	public String getPublicKey() {
+		if (ToolsKit.isEmpty(publicKey)) {
+			throw new IllegalStateException("publicKey 未被赋值");
 		}
-		return alipayPublicKey;
+		return publicKey;
 	}
 
-	public AliPayApiConfig setAlipayPublicKey(String alipayPublicKey) {
-		if (ToolsKit.isEmpty(alipayPublicKey)) {
-			throw new IllegalArgumentException("alipayPublicKey 值不能为 null");
+	public AliPayApiConfig setPublicKey(String publicKey) {
+		if (ToolsKit.isEmpty(publicKey)) {
+			throw new IllegalArgumentException("publicKey 值不能为 null");
 		}
-		this.alipayPublicKey = alipayPublicKey;
+		this.publicKey = publicKey;
 		return this;
 	}
 

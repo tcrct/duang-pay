@@ -4,7 +4,7 @@ import com.duangframework.kit.ToolsKit;
 import com.duangframework.mvc.plugin.IPlugin;
 import com.duangframework.pay.alipay.AliPayApiConfig;
 import com.duangframework.pay.alipay.AliPayApiConfigKit;
-import com.duangframework.pay.common.IPayConfig;
+import com.duangframework.pay.common.AbstractPayConfig;
 
 /**
  * 支付插件
@@ -13,23 +13,23 @@ import com.duangframework.pay.common.IPayConfig;
  */
 public class PayPlugin implements IPlugin {
 
-    private IPayConfig payConfig;
+    private AbstractPayConfig payConfig;
 
-    public PayPlugin(IPayConfig payConfig) {
+    public PayPlugin(AbstractPayConfig payConfig) {
         this.payConfig = payConfig;
     }
 
     @Override
     public void start() throws Exception {
-        startAlipay(payConfig.getAliPayConfig());
+        startAlipay(payConfig.getAliPayApiConfig());
     }
 
-    private void startAlipay(AliPayApiConfig aliPayApiConfig) {
-        if(ToolsKit.isEmpty(aliPayApiConfig)) {
+    private void startAlipay(AliPayApiConfig payConfig) {
+        if(ToolsKit.isEmpty(payConfig)) {
             return;
         }
         // 设置到ThreadLocal里
-        AliPayApiConfigKit.setThreadLocalAliPayApiConfig(aliPayApiConfig);
+        AliPayApiConfigKit.setThreadLocalAliPayApiConfig(payConfig);
     }
 
     @Override
